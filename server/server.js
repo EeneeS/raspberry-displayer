@@ -15,7 +15,7 @@ app.get("/", (_req, res) => {
   res.send("Raspberry Displayer");
 });
 
-app.use(express.static(path.join(__dirname, "../uploads")));
+app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
 app.get("/images", (_req, res) => {
   const uploadDir = path.join(__dirname, "../uploads/");
   try {
@@ -24,6 +24,9 @@ app.get("/images", (_req, res) => {
   } catch (error) {
     console.log(error);
   };
+});
+
+app.post("/upload-image", (req, res) => {
 });
 
 app.listen(port, () => {
