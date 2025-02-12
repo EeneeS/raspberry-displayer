@@ -7,15 +7,10 @@
     <script src="./script.js" defer type="module"></script>
   </head>
   <body>
-      
-    <form action="http://localhost:1234/upload-image" method="post" enctype="multipart/form-data">
-      <input type="file" name="image" />
+    <form id="uploadForm">
+      <input id="fileInput" type="file" name="image" />
       <input type="submit" value="Upload" />
     </form>
-
-    <ol id="images">
-
-    </ol>
-
+    <ol id="images"></ol>
   </body>
 </html>
