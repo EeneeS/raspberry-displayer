@@ -10,6 +10,8 @@ const __dirname = path.dirname(__filename)
 const app = express();
 const port = 1234;
 
+app.use(express.static(path.join(__dirname, "../public")));
+
 const storage = multer.diskStorage({
   destination: function(_req, _res, cb) {
     cb(null, path.join(__dirname, "../uploads/"));
