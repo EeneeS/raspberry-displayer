@@ -19,6 +19,8 @@ const storage = multer.diskStorage({
   },
 });
 
+const upload = multer({ storage })
+
 app.use(express.json());
 
 app.get("/", (_req, res) => {
@@ -36,7 +38,14 @@ app.get("/images", (_req, res) => {
   };
 });
 
-app.post("/upload-image", (req, res) => {
+app.post("/upload-image", upload.single("image"), (req, res) => {
+  if (!req.file) {
+    return res.status(401).send("No file uploaded.");
+  }
+  res.send({
+    message: "File uploaded successfully",
+    filename: req.file.filename,
+  });
 });
 
 app.listen(port, () => {
