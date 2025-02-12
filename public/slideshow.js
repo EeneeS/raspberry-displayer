@@ -21,7 +21,7 @@ function startSlideshow(imagesNames) {
     if (imagesNames.length > 0) {
       $imgContainer.src = `http://localhost:1234/uploads/${imagesNames[currentIndex]}`;
     }
-  }, 1000);
+  }, 5000);
 };
 
 async function getImageNames() {
