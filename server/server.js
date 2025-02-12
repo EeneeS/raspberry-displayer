@@ -32,7 +32,11 @@ app.get("/images", (_req, res) => {
   const uploadDir = path.join(__dirname, "../uploads/");
   try {
     const files = fs.readdirSync(uploadDir)
-    res.send(files);
+    const imageExtensions = /\.(jpg|jpeg|png)$/i;
+    const imageFiles = files.filter(filename => {
+      return imageExtensions.test(filename);
+    });
+    res.send(imageFiles);
   } catch (error) {
     console.log(error);
   };
