@@ -49,6 +49,7 @@ async function handleUpload(e) {
     });
     if (response.ok) {
       alert("File uploaded successfully!");
+      $fileInput.value = "";
       loadImages();
     } else {
       alert("Failed to upload file!");
