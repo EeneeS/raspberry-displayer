@@ -1,0 +1,27 @@
+{
+  "name": "raspberry-displayer",
+  "version": "1.0.0",
+  "description": "upload, remove, re-arrage images and display them.",
+  "main": "./server/server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon ./server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EeneeS/raspberry-displayer.git"
+  },
+  "author": "Niels Soete",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EeneeS/raspberry-displayer/issues"
+  },
+  "homepage": "https://github.com/EeneeS/raspberry-displayer#readme",
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
