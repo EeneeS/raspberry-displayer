@@ -36,6 +36,7 @@ async function handleUpload(e) {
   const allowedTypes = ["image/jpeg", "image/png"];
   if (!allowedTypes.includes(file.type)) {
     alert("Invalid file type");
+    $fileInput.value = "";
     return;
   };
 
