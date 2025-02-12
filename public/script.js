@@ -2,6 +2,7 @@
 
 async function loadImages() {
   const $imageContainer = document.querySelector("#images");
+  $imageContainer.addEventListener("click", handleClickImage);
   const imageNames = await getImageNames();
   const html = createImageHTML(imageNames);
   $imageContainer.innerHTML = "";
@@ -17,7 +18,7 @@ async function getImageNames() {
 function createImageHTML(imageNames) {
   let html = "";
   imageNames.forEach((name) => {
-    html += `<li><img src="http://localhost:1234/uploads/${name}"></li>`;
+    html += `<li data-image-name="${name}"><img src="http://localhost:1234/uploads/${name}"></li>`;
   });
   return html;
 };
@@ -59,6 +60,14 @@ async function handleUpload(e) {
     console.log(error);
     alert("Failed to upload file!");
   };
+};
+
+function handleClickImage(e) {
+  const clickedElement = e.target.closest("li");
+  if (clickedElement) {
+    clickedElement.classList.toggle("selected");
+    console.log(clickedElement.getAttribute("data-image-name"));
+  }
 };
 
 function main() {
