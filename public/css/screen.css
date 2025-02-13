@@ -34,7 +34,7 @@ body {
 }
 
 #images li:hover {
-  transform: scale(1.5); /* Zooms the image by 1.5 times */
+  transform: scale(1.5);
 }
 
 .selected {
