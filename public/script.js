@@ -66,13 +66,35 @@ function handleClickImage(e) {
   const clickedElement = e.target.closest("li");
   if (clickedElement) {
     clickedElement.classList.toggle("selected");
-    console.log(clickedElement.getAttribute("data-image-name"));
   }
+};
+
+async function handleRemoveImages(e) {
+  e.preventDefault();
+  const imageNames = Array.from(document.querySelectorAll(".selected"))
+                          .map(el => el.getAttribute("data-image-name"));
+  console.log(imageNames);
+
+  const response = await fetch("http://localhost:1234/delete-images", {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ filenames: imageNames })
+  }); 
+
+  if (response.ok) {
+    alert("Images removed successfully");
+  };
+
+  loadImages();
 };
 
 function main() {
   loadImages();
-  const $uploadForm = document.querySelector("#uploadForm");
+  const $removeButton = document?.querySelector("#removeSelected");
+  $removeButton.addEventListener("click", handleRemoveImages)
+  const $uploadForm = document?.querySelector("#uploadForm");
   $uploadForm.addEventListener("submit", handleUpload);
 };
 
