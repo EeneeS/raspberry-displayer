@@ -5,8 +5,11 @@ import * as config from "./config.js";
 async function loadImages() {
   const $imageContainer = document.querySelector("#images");
   $imageContainer.addEventListener("click", handleClickImage);
+
   const imageNames = await getImageNames();
+
   const html = createImageHTML(imageNames);
+
   $imageContainer.innerHTML = "";
   $imageContainer.insertAdjacentHTML("beforeend", html);
 };
@@ -75,7 +78,6 @@ async function handleRemoveImages(e) {
   e.preventDefault();
   const imageNames = Array.from(document.querySelectorAll(".selected"))
                           .map(el => el.getAttribute("data-image-name"));
-  console.log(imageNames);
 
   const response = await fetch(`${config.HOST}:${config.PORT}/delete-images`, {
     method: "DELETE",
@@ -94,8 +96,10 @@ async function handleRemoveImages(e) {
 
 function main() {
   loadImages();
+
   const $removeButton = document?.querySelector("#removeSelected");
   $removeButton.addEventListener("click", handleRemoveImages)
+
   const $uploadForm = document?.querySelector("#uploadForm");
   $uploadForm.addEventListener("submit", handleUpload);
 };
