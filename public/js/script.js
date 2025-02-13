@@ -78,7 +78,7 @@ async function handleRemoveImages(e) {
   e.preventDefault();
   const imageNames = Array.from(document.querySelectorAll(".selected"))
                           .map(el => el.getAttribute("data-image-name"));
-  if (confirm(`Are you sure you want to remove thesse images: ${imageNames}`)) {
+  if (confirm(`Are you sure you want to remove the selected images?`)) {
     const response = await fetch(`${config.HOST}:${config.PORT}/delete-images`, {
       method: "DELETE",
       headers: {
