@@ -1,5 +1,7 @@
 "use strict";
 
+import * as config from "./config.js";
+
 async function loadImages() {
   const $imageContainer = document.querySelector("#images");
   $imageContainer.addEventListener("click", handleClickImage);
@@ -10,7 +12,7 @@ async function loadImages() {
 };
 
 async function getImageNames() {
-  const response = await fetch("http://localhost:1234/images");
+  const response = await fetch(`${config.HOST}:${config.PORT}/images`);
   const data = await response.json();
   return data;
 };
@@ -18,7 +20,7 @@ async function getImageNames() {
 function createImageHTML(imageNames) {
   let html = "";
   imageNames.forEach((name) => {
-    html += `<li data-image-name="${name}"><img src="http://localhost:1234/uploads/${name}"></li>`;
+    html += `<li data-image-name="${name}"><img src="${config.HOST}:${config.PORT}/uploads/${name}"></li>`;
   });
   return html;
 };
@@ -45,7 +47,7 @@ async function handleUpload(e) {
   formData.append("image", file);
 
   try {
-    const response = await fetch("http://localhost:1234/upload-image", {
+    const response = await fetch(`${config.HOST}:${config.PORT}/upload-image`, {
       method: "POST",
       body: formData,
     });
@@ -75,7 +77,7 @@ async function handleRemoveImages(e) {
                           .map(el => el.getAttribute("data-image-name"));
   console.log(imageNames);
 
-  const response = await fetch("http://localhost:1234/delete-images", {
+  const response = await fetch(`${config.HOST}:${config.PORT}/delete-images`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
