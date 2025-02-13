@@ -78,20 +78,20 @@ async function handleRemoveImages(e) {
   e.preventDefault();
   const imageNames = Array.from(document.querySelectorAll(".selected"))
                           .map(el => el.getAttribute("data-image-name"));
+  if (confirm(`Are you sure you want to remove thesse images: ${imageNames}`)) {
+    const response = await fetch(`${config.HOST}:${config.PORT}/delete-images`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ filenames: imageNames })
+    }); 
 
-  const response = await fetch(`${config.HOST}:${config.PORT}/delete-images`, {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ filenames: imageNames })
-  }); 
-
-  if (response.ok) {
-    alert("Images removed successfully");
-  };
-
-  loadImages();
+    if (response.ok) {
+      alert("Images removed successfully");
+    };
+    loadImages();
+  }
 };
 
 function main() {
