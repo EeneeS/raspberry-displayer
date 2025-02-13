@@ -1,0 +1,43 @@
+body {
+  padding: 5rem;
+}
+
+#uploadForm {
+}
+
+#uploadForm #fileInput {
+}
+
+#uploadForm input[type="submit"] {
+}
+
+#removeSelected {
+}
+
+#images {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+#images li {
+}
+
+#images li img {
+  width: 200px;
+  height: 200px;
+}
+
+#images li {
+  transition: transform 0.3s ease-in-out;
+}
+
+#images li:hover {
+  transform: scale(1.5); /* Zooms the image by 1.5 times */
+}
+
+.selected {
+  outline: 2px solid red;
+  background-color: rgba(255, 0, 0, 0.2);
+}
