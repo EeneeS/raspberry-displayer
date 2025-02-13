@@ -54,6 +54,44 @@ app.post("/upload-image", upload.single("image"), (req, res) => {
   });
 });
 
+// TODO: refactor this hell... it works tho ;-;
+app.delete("/delete-images", (req, res) => {
+  const { filenames } = req.body;
+
+  if (!filenames || !Array.isArray(filenames) || filenames.length === 0) {
+    return res.status(400).send("No filenames provided or invalid format.");
+  }
+
+  const errors = [];
+  const deletedFiles = [];
+
+  filenames.forEach((filename) => {
+    const filePath = path.join(__dirname, "../uploads", filename);
+
+    fs.access(filePath, fs.constants.F_OK, (err) => {
+      if (err) {
+        errors.push(`File not found: ${filename}`);
+      } else {
+        fs.unlink(filePath, (err) => {
+          if (err) {
+            errors.push(`Error deleting file: ${filename}`);
+          } else {
+            deletedFiles.push(filename);
+          }
+
+          if (deletedFiles.length + errors.length === filenames.length) {
+            if (errors.length > 0) {
+              res.status(500).json({ deletedFiles, errors });
+            } else {
+              res.json({ deletedFiles });
+            }
+          }
+        });
+      }
+    });
+  });
+});
+
 app.listen(port, () => {
   console.log(`[server] running on port: ${port}`);
 });
