@@ -2,6 +2,11 @@ body {
   padding: 5rem;
 }
 
+header {
+  display: flex;
+  justify-content: space-between;
+}
+
 #uploadForm {
 }
 
