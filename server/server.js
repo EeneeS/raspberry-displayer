@@ -97,7 +97,7 @@ app.delete("/delete-images", (req, res) => {
 });
 
 app.post("/open-firefox", (_req, _res) => {
-  exec(`firefox ${process.env.HOST}:${process.env.PORT}/slideshow.html`);
+  exec(`firefox --kiosk ${process.env.HOST}:${process.env.PORT}/slideshow.html`);
 });
 
 app.listen(PORT, () => {
