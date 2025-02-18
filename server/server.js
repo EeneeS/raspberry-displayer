@@ -4,6 +4,7 @@ import { fileURLToPath } from "url";
 import path from "path";
 import fs from "fs";
 import multer from "multer";
+import { exec } from "child_process";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename)
@@ -93,6 +94,10 @@ app.delete("/delete-images", (req, res) => {
       }
     });
   });
+});
+
+app.post("/open-firefox", (_req, _res) => {
+  exec(`firefox ${process.env.HOST}:${process.env.PORT}/slideshow.html`);
 });
 
 app.listen(PORT, () => {
