@@ -94,11 +94,21 @@ async function handleRemoveImages(e) {
   }
 };
 
+async function handleOpenFirefox(e) {
+  e.preventDefault();
+  await fetch(`${config.HOST}:${config.PORT}/open-firefox`, {
+    method: "POST",
+  });
+};
+
 function main() {
   loadImages();
 
   const $removeButton = document?.querySelector("#removeSelected");
   $removeButton.addEventListener("click", handleRemoveImages)
+
+  const $openFirefoxButton = document?.querySelector("#openFirefox");
+  $openFirefoxButton.addEventListener("click", handleOpenFirefox);
 
   const $uploadForm = document?.querySelector("#uploadForm");
   $uploadForm.addEventListener("submit", handleUpload);
