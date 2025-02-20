@@ -5,12 +5,13 @@ import path from "path";
 import fs from "fs";
 import multer from "multer";
 import { exec } from "child_process";
+import * as config from "../config.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename)
 
 const app = express();
-const PORT = process.env.PORT;
+const PORT = config.PORT;
 
 app.use(cors());
 
@@ -97,7 +98,7 @@ app.delete("/delete-images", (req, res) => {
 });
 
 app.post("/open-firefox", (_req, _res) => {
-  exec(`firefox --kiosk ${process.env.HOST}:${process.env.PORT}/slideshow.html`);
+  exec(`firefox --kiosk ${config.HOST}:${PORT}/slideshow.html`);
 });
 
 app.listen(PORT, () => {
