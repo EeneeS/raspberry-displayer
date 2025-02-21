@@ -96,9 +96,6 @@ app.delete("/delete-images", (req, res) => {
   });
 });
 
-app.post("/shuffle-images" , (_req, _res) => {
-});
-
 app.post("/open-slideshow", (_req, res) => {
   exec(`firefox --kiosk ${process.env.HOST}:${PORT}/slideshow.html`);
   res.status(200);
