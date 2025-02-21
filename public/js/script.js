@@ -22,21 +22,10 @@ async function getImageNames() {
 
 function createImageHTML(imageNames) {
   let html = "";
-  shuffleImages(imageNames);
   imageNames.forEach((name) => {
     html += `<li data-image-name="${name}"><img src="${config.HOST}:${config.PORT}/uploads/${name}"></li>`;
   });
   return html;
-};
-
-// Fisher-Yates shuffle :)
-function shuffleImages(imageNames) {
-  for (let i = imageNames.length - 1; i > 0; i--) {
-    let j = Math.floor(Math.random() * (i + 1));
-    let temp = imageNames[i];
-    imageNames[i] = imageNames[j];
-    imageNames[j] = temp;
-  }
 };
 
 async function handleUpload(e) {
