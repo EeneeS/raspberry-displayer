@@ -18,12 +18,23 @@ function startSlideshow(imagesNames) {
     currentIndex++;
     if (currentIndex >= imagesNames.length) {
       imagesNames = await getImageNames();
+      shuffleImages(imagesNames);
       currentIndex = 0;
     }
     if (imagesNames.length > 0) {
       $imgContainer.src = `${config.HOST}:${config.PORT}/uploads/${imagesNames[currentIndex]}`;
     }
-  }, 5000);
+  }, 3500);
+};
+
+// Fisher-Yates shuffle :)
+function shuffleImages(imageNames) {
+  for (let i = imageNames.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    let temp = imageNames[i];
+    imageNames[i] = imageNames[j];
+    imageNames[j] = temp;
+  }
 };
 
 async function getImageNames() {
