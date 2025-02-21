@@ -96,9 +96,12 @@ async function handleRemoveImages(e) {
 
 async function handleOpenFirefox(e) {
   e.preventDefault();
-  await fetch(`${config.HOST}:${config.PORT}/open-firefox`, {
+  const response = await fetch(`${config.HOST}:${config.PORT}/open-slideshow`, {
     method: "POST",
   });
+  if (response.ok) {
+    alert("Slideshow opened successfully");
+  }
 };
 
 function main() {
