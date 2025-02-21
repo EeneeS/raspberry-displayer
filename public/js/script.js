@@ -33,9 +33,9 @@ function createImageHTML(imageNames) {
 function shuffleImages(imageNames) {
   for (let i = imageNames.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1));
-    let temp = array[i];
-    array[i] = array[j];
-    array[j] = temp;
+    let temp = imageNames[i];
+    imageNames[i] = imageNames[j];
+    imageNames[j] = temp;
   }
 };
 
